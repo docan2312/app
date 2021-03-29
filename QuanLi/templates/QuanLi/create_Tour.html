@@ -1,0 +1,55 @@
+{% extends 'QuanLi/main.html' %}
+
+{% block content %}
+{% load static %}
+<div class="container">
+    <form action="{% url 'save_tour' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+       <div class="row">
+            <div class="col-25">
+                <label for="fname">Mã Tour</label>
+            </div>
+            <div class="col-75">
+                {{ form.MaTour }}
+            </div>
+       </div>
+        <div class="row">
+            <div class="col-25">
+              <label for="fname">Địa Điểm</label>
+            </div>
+            <div class="col-75">
+              {{ form.DiaDiem }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
+              <label for="fname">Ngày Đi</label>
+            </div>
+            <div class="col-75">
+              {{ form.NgayDi }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
+              <label for="fname">Ngày Về</label>
+            </div>
+            <div class="col-75">
+              {{ form.NgayVe }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
+              <label for="fname">Chi Tiết</label>
+            </div>
+            <div class="col-75">
+              {{ form.ChiTiet }}
+            </div>
+        </div>
+        <div class="row" style="float: right">
+            <input type="submit" value="Tạo"> &nbsp;
+            <a class="btn btn-sm btn-danger" href="{% url 'tour' %}">Quay lại trang trước</a>
+        </div>
+    </form>
+</div>
+
+{% endblock %}

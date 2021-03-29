@@ -1,0 +1,12 @@
+{% extends 'QuanLi/main.html' %}
+{% block content %}
+<h1>Bạn có muốn xóa công đoàn viên {{xoa.HoTen}}?</h1>
+<div class="row">
+    <form method="post" action="{% url 'save_del_cdv' xoa.id %}">
+                {% csrf_token %}
+        <input type="submit" value="Xóa" >
+    </form> &nbsp;
+    <a class="btn btn-sm btn-info" href="{% url 'cdv' %}">Quay lại trang trước</a>
+
+</div>
+{% endblock %}

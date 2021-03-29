@@ -1,0 +1,31 @@
+{% extends 'QuanLi/main.html' %}
+
+{% block content %}
+{% load static %}
+<div class="container">
+    <form action="{% url 'save_dv' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+       <div class="row">
+            <div class="col-25">
+                <label for="fname">Mã Đơn Vị</label>
+            </div>
+            <div class="col-75">
+                {{ form_dv.MaDonVi }}
+            </div>
+       </div>
+        <div class="row">
+            <div class="col-25">
+              <label for="fname">Tên Đơn Vị</label>
+            </div>
+            <div class="col-75">
+              {{ form_dv.TenDonVi }}
+            </div>
+        </div>
+        <div class="row" style="float: right">
+            <input type="submit" value="Tạo"> &nbsp;
+            <a class="btn btn-sm btn-danger" href="{% url 'home' %}">Quay lại trang chủ</a>
+        </div>
+    </form>
+</div>
+
+{% endblock %}

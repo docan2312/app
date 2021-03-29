@@ -1,0 +1,61 @@
+{%  extends 'QuanLi/main.html' %}
+
+{% block content %}
+
+{%  include 'QuanLi/status.html' %}
+
+<br>
+
+<div class="row">
+	<div class="col-md-5">
+		<h5>Đơn Vị</h5>
+		<hr>
+		<div class="card card-body">
+			<a class="btn btn-primary  btn-sm btn-block" href="{% url 'create_dv' %}">Tạo Đơn Vị</a>
+			<table class="table table-sm">
+				<tr>
+
+					<th>Mã Đơn Vị</th>
+					<th>Tên Đơn Vị</th>
+					<th>Xem</th>
+				</tr>
+				{% for donvi in donvi %}
+				<tr>
+
+					<th>{{donvi.MaDonVi}}</th>
+					<th>{{donvi.TenDonVi}}</th>
+					<th><a class="btn btn-sm btn-info"  href="{% url 'detail_dv' donvi.id %}">Xem</a> </th>
+				</tr>
+				{% endfor %}
+			</table>
+		</div>
+	</div>
+
+	<div class="col-md-7">
+		<h5>Tour</h5>
+		<hr>
+		<div class="card card-body">
+			<a class="btn btn-primary  btn-sm btn-block" href="{% url 'create_tour' %}">Tạo Tour</a>
+			<table class="table table-sm">
+				<tr>
+					<th>Mã Tour</th>
+					<th>Tên Tour</th>
+					<th>Xem Thêm</th>
+					<th>Xóa</th>
+				</tr>
+				{% for tour in tour %}
+				<tr>
+					<th>{{tour.MaTour}}</th>
+					<th>{{tour.DiaDiem}}</th>
+					<th><a class="btn btn-sm btn-info" href="{% url 'detail_tour' tour.id %}">Xem Thêm</a></th>
+					<th><a class="btn btn-sm btn-danger" href="">Xóa</a></th>
+				</tr>
+				{% endfor %}
+			</table>
+		</div>
+	</div>
+
+</div>
+
+{% endblock %}
+

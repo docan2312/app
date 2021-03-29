@@ -1,0 +1,95 @@
+{%  extends 'QuanLi/main.html' %}
+
+{% block content %}
+
+	<br>
+
+<div class="row">
+	<div class="col">
+		<div class="col-md">
+			<div class="card text-center text-white  mb-3" id="total-orders">
+			  	<div class="card-header">
+			  		<h5 class="card-title">Số Tour</h5>
+			  	</div>
+			  	<div class="card-body">
+			    	<h3 class="card-title">{{total_tour}}</h3>
+			  	</div>
+			</div>
+		</div>
+	</div>
+	<div class="col">
+		<div class="col-md">
+			<div class="card text-center text-white  mb-3" id="orders-pending">
+			  	<div class="card-header">
+			  		<h5 class="card-title">Số Vé Đã Đăng Kí</h5>
+			  	</div>
+			  	<div class="card-body">
+			    	<h3 class="card-title">{{total_dki}}</h3>
+			  	</div>
+			</div>
+		</div>
+	</div>
+</div>
+<br>
+</br>
+<div class="row">
+	<div class="col">
+		<div class="card card-body">
+			<form method="get" style=" width: 100%;">
+				<table>
+					<tr style="border-color: white">
+						<th style="border: none">Mã Tour</th>
+						<th style="border: none">Địa Điểm</th>
+					</tr>
+					<tr>
+						<td style="background-color: white; border: none ">{{myFilter.form.MaTour}}</td>
+						<td style="background-color: white; border: none ">{{myFilter.form.DiaDiem}}</td>
+						<td style="background-color: white; border: none"><button class="btn btn-primary" type="submit">Tìm kiếm</button></td>
+					</tr>
+				</table>
+
+		  </form>
+		</div>
+	</div>
+</div>
+<br>
+<h5>Công Đoàn Viên</h5>
+<div class="row">
+	<div class="col">
+		<div class="card card-body">
+		    <a href="{% url 'create_tour' %}"> <button class="btn btn-primary" type="submit">Thêm Tour</button></a>
+		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md">
+		<div class="card card-body">
+			<table class="table table-sm">
+				<tr>
+					<th>Mã Tour</th>
+					<th>Địa Điểm</th>
+					<th>Ngày Đi</th>
+					<th>Ngày Về</th>
+                    <th>Xem Thêm</th>
+					<th>Sửa</th>
+					<th>Xóa</th>
+				</tr>
+
+
+			{% for tour in tour %}
+				<tr>
+					<td>{{tour.MaTour}}</td>
+					<td>{{tour.DiaDiem}}</td>
+					<td>{{tour.NgayDi|date:'d-m-o'}}</td>
+					<td>{{tour.NgayVe|date:'d-m-o'}}</td>
+                    <td><a class="btn btn-sm btn-info" href="{% url 'detail_tour' tour.id %}">Xem Thêm</a></td>
+					<td><a class="btn btn-sm btn-info" href="{% url 'update_tour' tour.id %}">Sửa</a></td>
+					<td><a class="btn btn-sm btn-danger" href="{% url 'del_tour' tour.id %}">Xóa</a></td>
+				</tr>
+			{% endfor %}
+			</table>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

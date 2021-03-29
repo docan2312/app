@@ -1,0 +1,86 @@
+{%  extends 'QuanLi/main.html' %}
+
+{% block content %}
+
+	<br>
+
+<div class="row">
+	<div class="col">
+		<div class="col-md">
+			<div class="card text-center text-white  mb-3" id="orders-pending">
+			  	<div class="card-header">
+			  		<h5 class="card-title">Công Đoàn Viên</h5>
+			  	</div>
+			  	<div class="card-body">
+			    	<h3 class="card-title">{{total_cdv}}</h3>
+			  	</div>
+			</div>
+		</div>
+	</div>
+</div>
+</br>
+<div class="row">
+	<div class="col">
+		<div class="card card-body">
+			<form method="get" style=" width: 100%;">
+				<table>
+					<tr style="border-color: white">
+						<th style="border: none">Đơn Vị</th>
+						<th style="border: none">Mã Công Đoàn Viên</th>
+						<th style="border: none">Tên Công Đoàn Viên</th>
+					</tr>
+					<tr>
+						<td style="background-color: white; border: none ">{{myFilter.form.DonVi}}</td>
+						<td style="background-color: white; border: none ">{{myFilter.form.MaCDV}}</td>
+						<td style="background-color: white; border: none">{{myFilter.form.HoTen}}</td>
+						<td style="background-color: white; border: none"><button class="btn btn-primary" type="submit">Tìm kiếm</button></td>
+					</tr>
+				</table>
+
+		  </form>
+		</div>
+	</div>
+</div>
+<br>
+
+<h5>Công Đoàn Viên</h5>
+<div class="row">
+	<div class="col">
+		<div class="card card-body">
+		    <a href="{% url 'create_cdv' %}"> <button class="btn btn-primary" type="submit">Thêm Công Đoàn Viên</button></a>
+		</div>
+	</div>
+
+</div>
+<div class="row">
+	<div class="col-md">
+		<div class="card card-body">
+			<table class="table table-sm">
+				<tr>
+					<th>Mã Công Đoàn Viên</th>
+					<th>Tên Công Đoàn Viên</th>
+					<th>Ngày Sinh</th>
+					<th>Ngày Vào Ngành</th>
+                    <th>Đơn Vị</th>
+					<th>Sửa</th>
+					<th>Xóa</th>
+				</tr>
+
+
+			{% for cdv in cdv %}
+				<tr>
+					<td>{{cdv.MaCDV}}</td>
+					<td>{{cdv.HoTen}}</td>
+					<td>{{cdv.NgaySinh|date:'d-m-o'}}</td>
+					<td>{{cdv.NgayVaoNganh|date:'d-m-o'}}</td>
+                    <td>{{cdv.DonVi.TenDonVi}}</td>
+					<td><a class="btn btn-sm btn-info" href="{% url 'update_cdv' cdv.id %}">Sửa</a></td>
+					<td><a class="btn btn-sm btn-danger" href="{% url 'del_cdv' cdv.id %}">Xóa</a></td>
+				</tr>
+			{% endfor %}
+			</table>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

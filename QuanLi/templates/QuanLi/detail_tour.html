@@ -1,0 +1,84 @@
+{%  extends 'QuanLi/main.html' %}
+
+{% block content %}
+<style>
+	pre{
+		font-family: Sans-Serif
+	}
+</style>
+	<br>
+
+<div class="row">
+	<div class="col-md">
+		<div class="card card-body">
+			<h5>Tour: {{tour.DiaDiem}}</h5>
+			<hr>
+			<a class="btn btn-outline-info  btn-sm btn-block" href="{% url 'update_tour' tour.id %}">Chỉnh Sửa Tour</a>
+			<a class="btn btn-outline-danger  btn-sm btn-block" href="{% url 'del_tour' tour.id %}">Xóa Tour</a>
+
+		</div>
+	</div>
+
+	<div class="col-md">
+		<div class="card card-body" style="overflow: auto">
+			<h5>Thông Tin</h5>
+			<hr>
+			<p>Mã Tour: {{tour.MaTour}}</p>
+			<p>Địa Điểm: {{tour.DiaDiem}}</p>
+            <p>Ngày Đi: {{tour.NgayDi|date:'d-m-o'}}</p>
+            <p>Ngày Về: {{tour.NgayVe|date:'d-m-o'}}</p>
+			<pre style="font-size: 18px; ">Chi Tiết: {{tour.ChiTiet}}</pre>
+		</div>
+	</div>
+	<div class="col-md">
+		<div class="card card-body">
+			<h5>Công Đoàn Viên Đăng Kí</h5>
+			<hr>
+			<h1 style="text-align: center;padding: 10px">{{total_dk}}</h1>
+		</div>
+	</div>
+
+<!--	<div class="col-md">-->
+<!--		<div class="card card-body">-->
+<!--			<h5>Công Đoàn Viên</h5>-->
+<!--			<hr>-->
+<!--			<h1 style="text-align: center;padding: 10px"></h1>-->
+<!--		</div>-->
+<!--	</div>-->
+</div>
+
+
+
+<h5>Công Đoàn Viên</h5>
+<div class="row">
+	<div class="col">
+		<div class="card card-body">
+		    <a href="{% url 'register_tour' %}"> <button class="btn btn-primary" type="submit">Thêm Công Đoàn Viên Tham Gia Tour</button></a>
+		</div>
+	</div>
+
+</div>
+<div class="row">
+	<div class="col-md">
+		<div class="card card-body">
+			<table class="table table-sm">
+				<tr>
+					<th>Mã Công Đoàn Viên</th>
+					<th>Tên Công Đoàn Viên</th>
+					<th>Đơn Vị</th>
+					<th>Xóa</th>
+				</tr>
+				{% for item in tour.dktour_set.all %}
+				<tr>
+					<td>{{item.CongDoanVien.MaCDV}}</td>
+					<td>{{item.CongDoanVien.HoTen}}</td>
+					<td>{{item.CongDoanVien.DonVi.TenDonVi}}</td>
+					<td><a class="btn btn-sm btn-danger" href="{% url 'del_dktour' item.id %}">Xóa</a></td>
+				</tr>
+				{% endfor %}
+			</table>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

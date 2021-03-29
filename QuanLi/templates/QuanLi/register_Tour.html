@@ -1,0 +1,31 @@
+{% extends 'QuanLi/main.html' %}
+
+{% block content %}
+{% load static %}
+<div class="container">
+    <form action="{% url 'save_register' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+       <div class="row">
+            <div class="col-25">
+                <label>Tên Công Đoàn Viên</label>
+            </div>
+            <div class="col-75">
+                {{ form.CongDoanVien }}
+            </div>
+       </div>
+        <div class="row">
+            <div class="col-25">
+              <label>Tour Đăng Kí</label>
+            </div>
+            <div class="col-75">
+              {{ form.Tour }}
+            </div>
+        </div>
+        <div class="row" style="float: right">
+            <input type="submit" value="Thêm"> &nbsp;
+            <a class="btn btn-sm btn-danger" href="{% url 'tour' %}">Quay lại trang trước</a>
+        </div>
+    </form>
+</div>
+
+{% endblock %}
